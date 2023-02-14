@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Discover the portfolio of Riz, a talented web developer showcasing his skills and projects. Explore his expertise in web development, design, and technology. Visit Riz-folio.netlify.app today!">
+  <meta name="description"
+    content="Discover the portfolio of Riz, a talented web developer showcasing his skills and projects. Explore his expertise in web development, design, and technology. Visit Riz-folio.netlify.app today!">
   <title>Rizwan's Portfolio</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/fontawesome.css">
@@ -632,6 +633,7 @@
         <div class="col-12 col-lg-6 bg-white shadow p-3">
           <div class="form w-100 pb-2">
             <h4 class="display-3--title mb-5">start your project</h4>
+            <!-- <form id="submit-form" class="row" method="POST" novalidate action="https://script.google.com/macros/s/AKfycbzcpnuTpwcD8kA1S46kc_tZFbV7vUvExfW48Z9JwFdN9sbyrJlpOEDwnIEC9zTQaEEp/exec"> -->
             <form id="submit-form" class="row" novalidate action="">
               <div class="col-lg-6 col-md mb-3">
                 <input type="text" name="firstname" placeholder="First Name" id="inputFirstName"
@@ -658,32 +660,36 @@
               <!-- <input type="submit" class="btn btn-primary rounded-pill pt-3 pb-3" value="Submit"> -->
             </form>
             <script>
+              let submitform = false;
               const form = document.querySelector('form');
               form.addEventListener('submit', e => {
                 if (!form.checkValidity()) {
                   e.preventDefault();
-                  alert("Wrong");
+                  // alert("Wrong");
                 } else {
-                  alert("Right...")
-                  $("#submit-form").submit((e) => {
-                    e.preventDefault()
-                    $.ajax({
-                      url: "https://script.google.com/macros/s/AKfycby0i30qwT6fCksvYTi1zYCKbHZ4GHUmBE50om-ldVBpsqB13YkVKyCVwkkdJzyjEud8/exec",
-                      data: $("#submit-form").serialize(),
-                      method: "post",
-                      success: function (response) {
-                        alert("Form submitted successfully")
-                        window.location.reload()
-                        //window.location.href="https://google.com"
-                      },
-                      error: function (err) {
-                        alert("Something Error")
-                      }
-                    })
-                  })
+                  submitform = true;
+                  console.log("submitform : ", submitform)
                 }
                 form.classList.add('was-validated');
               })
+
+              $("#submit-form").submit((e) => {
+                e.preventDefault()
+                $.ajax({
+                  url: "https://script.google.com/macros/s/AKfycbzcpnuTpwcD8kA1S46kc_tZFbV7vUvExfW48Z9JwFdN9sbyrJlpOEDwnIEC9zTQaEEp/exec",
+                  data: $("#submit-form").serialize(),
+                  method: "POST",
+                  success: function (response) {
+                    alert("Form submitted successfully")
+                    window.location.reload()
+                    //window.location.href="https://google.com"
+                  },
+                  error: function (err) {
+                    alert("Something Error")
+                  }
+                })
+              })
+
             </script>
           </div>
         </div>
